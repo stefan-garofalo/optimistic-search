@@ -16,6 +16,7 @@
 		"react-dom": "^19.0.0-rc-49496d49-20240814"
 	},
 	"devDependencies": {
+		"@octokit/types": "^13.5.0",
 		"@types/node": "^20.14.15",
 		"@types/react": "^18.3.3",
 		"@types/react-dom": "^18.3.0",

@@ -1,4 +1,6 @@
 import { LIMIT } from '@/feat/search/config'
+import { Endpoints } from '@octokit/types'
+type TRepositories = Endpoints['GET /search/repositories']['response']['data']
 
 async function get({
 	segment,
@@ -7,19 +9,21 @@ async function get({
 	segment: string
 	query: URLSearchParams
 }) {
-	console.log(`${process.env.API_ENDPOINT}/${segment}?${query}`)
 	const res = await fetch(`${process.env.API_ENDPOINT}/${segment}?${query}`, {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/vnd.github+json',
 			'X-GitHub-Api-Version': '2022-11-28'
+		},
+		next: {
+			revalidate: 60
 		}
 	})
-	return res.json()
+	return res.json() as Promise<TRepositories>
 }
 
 export async function getRepos({
-	q = 'js',
+	q = '',
 	sort = '',
 	order = '',
 	limit = LIMIT,
@@ -30,7 +34,7 @@ export async function getRepos({
 	order?: string
 	limit?: number
 	page?: number
-} = {}) {
+} = {}): Promise<TRepositories> {
 	const data = await get({
 		segment: 'repositories',
 		query: new URLSearchParams({
@@ -41,5 +45,6 @@ export async function getRepos({
 			page: page.toString()
 		})
 	})
+
 	return data
 }

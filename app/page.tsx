@@ -2,6 +2,7 @@ import { Suspense } from 'react'
 
 import Results from '@/feat/search/components/Results'
 import type { SearchParams } from '@/feat/search/types'
+import Filters from '@/feat/search/components/Filters'
 
 export const experimental_ppr = true
 
@@ -20,9 +21,7 @@ export default function Home({ searchParams }: SearchParams) {
 			</section>
 			<section className="grid grid-cols-4 gap-6 first:*:col-span-1 last:*:col-span-3">
 				<Suspense>
-					<div className="border border-current rounded-md h-full p-4">
-						filters
-					</div>
+					<Filters searchParams={searchParams} />
 				</Suspense>
 				<Suspense>
 					<Results searchParams={searchParams} />

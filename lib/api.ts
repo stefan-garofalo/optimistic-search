@@ -22,7 +22,6 @@ async function get({
 	return res.json() as Promise<unknown>
 }
 
-
 export async function getRepos({
 	q = '',
 	sort = '',
@@ -35,8 +34,8 @@ export async function getRepos({
 	order?: string
 	limit?: number
 	page?: number
-} = {}): Promise<TRepositories> {
-	const data = await get({
+} = {}) {
+	const data = (await get({
 		segment: 'repositories',
 		query: new URLSearchParams({
 			q,
@@ -45,9 +44,9 @@ export async function getRepos({
 			per_page: limit.toString(),
 			page: page.toString()
 		})
-	})
+	})) as TRepositories
 
-	return data as Promise<TRepositories>
+	return data
 }
 
 export async function getFilters({
@@ -62,7 +61,7 @@ export async function getFilters({
 	order?: string
 	limit?: number
 	page?: number
-} = {}): Promise<TRepositories> {
+} = {}) {
 	const data = (await get({
 		segment: 'repositories',
 		query: new URLSearchParams({

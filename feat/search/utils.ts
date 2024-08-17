@@ -6,24 +6,83 @@ type TLanguage = {
 	color?: string
 	name: string
 }
-type TFilterLanguage = Omit<TLanguage, 'aliases'> & { link: string }
+type TFilterLanguage = Omit<TLanguage, 'aliases'> & {
+	value: `language:${string}`
+}
+type TFilterOwner = {
+	value: `${'org' | 'user'}:${string}` | string
+	name: string
+}
+type TFilterStatus = {
+	value: `is:${'archived' | 'forked'}`
+	name: 'Archived' | 'Forked'
+}
+type TFilterTopic = { name: string; value: `topic:${string}` }
 
 export function formatFilters(items: TRepositories['items']) {
-	const LanguagesMap = new Map<string, TFilterLanguage>()
+	const languagesMap = new Map<string, TFilterLanguage>()
+	const ownersMap = new Map<string, TFilterOwner>()
+	const statusMap = new Map<string, TFilterStatus>()
+	const topicsMap = new Map<string, TFilterTopic>()
 
 	for (const item of items) {
 		const [langKey, langs] = formatLanguage({ item, langs: LANG_LIST })
-		if (langKey && langs && !LanguagesMap.has(langKey)) {
-			LanguagesMap.set(langKey, langs)
+		if (langKey && langs && !languagesMap.has(langKey))
+			languagesMap.set(langKey, langs)
+
+		const [ownerKey, owner] = formatOwner(item?.owner)
+		if (ownerKey && owner && !ownersMap.has(ownerKey))
+			ownersMap.set(ownerKey, owner)
+
+		const statuses = formatStatuses(item)
+		for (const status of statuses) {
+			if (status && !statusMap.has(status.value))
+				statusMap.set(status.value, status)
+		}
+
+		const topics = formatTopics(item.topics)
+		for (const topic of topics) {
+			if (topic && !topicsMap.has(topic.value))
+				topicsMap.set(topic.value, topic)
 		}
 	}
 
 	return {
-		languages: Array.from(LanguagesMap.values())
+		languages: [...languagesMap.values()],
+		owners: [...ownersMap.values()],
+		statuses: [...statusMap.values()],
+		topics: [...topicsMap.values()]
 	}
 }
 
-function formatOwner(item: TRepositories['items'][0]) {}
+const formatTopics = (topics: string[] | undefined): TFilterTopic[] =>
+	topics
+		? topics.map((topic) => ({ name: topic, value: `topic:${topic}` } as const))
+		: []
+
+const formatStatuses = ({
+	archived,
+	forks
+}: TRepositories['items'][0]): TFilterStatus[] =>
+	[
+		archived ? ({ value: 'is:archived', name: 'Archived' } as const) : null,
+		forks ? ({ value: 'is:forked', name: 'Forked' } as const) : null
+	].filter((item) => !!item)
+
+const formatOwner = (
+	owner: TRepositories['items'][0]['owner']
+): [string | null, TFilterOwner | null] =>
+	owner
+		? [
+				owner.login,
+				{
+					value: `${owner.type === 'Organization' ? 'org' : 'user'}:${
+						owner.login
+					}`,
+					name: owner.login
+				}
+		  ]
+		: [null, null]
 
 const formatLanguage = ({
 	item,
@@ -38,7 +97,7 @@ const formatLanguage = ({
 				item.language,
 				{
 					...langs[item.language as keyof typeof langs],
-					link: `/language:${
+					value: `language:${
 						langs[item.language as keyof typeof langs]?.aliases ?? [
 							item.language
 						]

@@ -17,6 +17,8 @@ const config: Config = {
 				container: 'var(--container)'
 			},
 			colors: {
+				background: 'rgb(var(--background-start-rgb))',
+				foreground: 'rgb(var(--foreground-rgb))',
 				secondary: 'rgb(var(--secondary-foreground-rgb))'
 			}
 		}

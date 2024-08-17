@@ -26,7 +26,7 @@ export function formatFilters(items: TRepositories['items']) {
 	const topicsMap = new Map<string, TFilterTopic>()
 
 	for (const item of items) {
-		const [langKey, langs] = formatLanguage({ item, langs: LANG_LIST })
+		const [langKey, langs] = formatLanguage(item, LANG_LIST)
 		if (langKey && langs && !languagesMap.has(langKey))
 			languagesMap.set(langKey, langs)
 
@@ -55,25 +55,19 @@ export function formatFilters(items: TRepositories['items']) {
 	}
 }
 
-const formatTopics = (topics: string[] | undefined): TFilterTopic[] =>
-	topics
-		? topics.map((topic) => ({ name: topic, value: `topic:${topic}` } as const))
-		: []
+const formatTopics = (topics?: string[]) =>
+	topics?.map((topic) => ({ name: topic, value: `topic:${topic}` as const })) ??
+	[]
 
-const formatStatuses = ({
-	archived,
-	forks
-}: TRepositories['items'][0]): TFilterStatus[] =>
+const formatStatuses = ({ archived, forks }: TRepositories['items'][0]) =>
 	[
-		archived ? ({ value: 'is:archived', name: 'Archived' } as const) : null,
-		forks ? ({ value: 'is:forked', name: 'Forked' } as const) : null
-	].filter((item) => !!item)
+		archived && ({ value: 'is:archived', name: 'Archived' } as const),
+		forks && ({ value: 'is:forked', name: 'Forked' } as const)
+	].filter(Boolean)
 
-const formatOwner = (
-	owner: TRepositories['items'][0]['owner']
-): [string | null, TFilterOwner | null] =>
+const formatOwner = (owner?: TRepositories['items'][0]['owner']) =>
 	owner
-		? [
+		? ([
 				owner.login,
 				{
 					value: `${owner.type === 'Organization' ? 'org' : 'user'}:${
@@ -81,19 +75,16 @@ const formatOwner = (
 					}`,
 					name: owner.login
 				}
-		  ]
+		  ] as const)
 		: [null, null]
 
-const formatLanguage = ({
-	item,
-	langs
-}: {
-	item: TRepositories['items'][0]
+const formatLanguage = (
+	item: TRepositories['items'][0],
 	langs: { [K in keyof typeof LANG_LIST]: TLanguage }
-}): [string | null, TFilterLanguage | null] =>
+): [string | null, TFilterLanguage | null] =>
 	!item.language
 		? [null, null]
-		: [
+		: ([
 				item.language,
 				{
 					...langs[item.language as keyof typeof langs],
@@ -104,4 +95,4 @@ const formatLanguage = ({
 					}`,
 					name: item.language
 				}
-		  ]
+		  ] as const)

@@ -4,7 +4,7 @@
 
 :root {
 	--foreground-rgb: 0, 0, 0;
-	--secondary-foreground-rgb: 55, 55, 55;
+	--secondary-foreground-rgb: 160, 160, 160;
 	--background-start-rgb: 214, 219, 220;
 	--background-end-rgb: 255, 255, 255;
 	--container: 2.5rem;
@@ -13,7 +13,7 @@
 @media (prefers-color-scheme: dark) {
 	:root {
 		--foreground-rgb: 255, 255, 255;
-		--secondary-foreground-rgb: 150, 150, 150;
+		--secondary-foreground-rgb: 50, 50, 50;
 		--background-start-rgb: 0, 0, 0;
 		--background-end-rgb: 0, 0, 0;
 	}
@@ -30,5 +30,5 @@ body {
 }
 
 code {
-	@apply bg-secondary text-sm rounded-md px-1.5 py-1 mx-0.5;
+	@apply bg-secondary  text-sm rounded-md px-1.5 py-1 mx-0.5;
 }

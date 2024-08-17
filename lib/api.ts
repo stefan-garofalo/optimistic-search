@@ -1,6 +1,5 @@
 import { LIMIT } from '@/feat/search/config'
 import { Endpoints } from '@octokit/types'
-type TRepositories = Endpoints['GET /search/repositories']['response']['data']
 
 async function get({
 	segment,
@@ -19,9 +18,11 @@ async function get({
 			revalidate: 60
 		}
 	})
-	return res.json() as Promise<TRepositories>
+	return res.json() as Promise<unknown>
 }
 
+export type TRepositories =
+	Endpoints['GET /search/repositories']['response']['data']
 export async function getRepos({
 	q = '',
 	sort = '',
@@ -46,5 +47,5 @@ export async function getRepos({
 		})
 	})
 
-	return data
+	return data as Promise<TRepositories>
 }

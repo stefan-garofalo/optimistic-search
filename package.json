@@ -11,11 +11,13 @@
 	"dependencies": {
 		"@thatapicompany/thecatapi": "^1.0.2",
 		"babel-plugin-react-compiler": "^0.0.0-experimental-52d6685-20240815",
+		"clsx": "^2.1.1",
 		"eslint-config-next": "^15.0.0-rc.0",
 		"eslint-plugin-react-compiler": "^0.0.0-experimental-9aef357-20240815",
 		"next": "^15.0.0-rc.0",
 		"react": "^19.0.0-rc-49496d49-20240814",
-		"react-dom": "^19.0.0-rc-49496d49-20240814"
+		"react-dom": "^19.0.0-rc-49496d49-20240814",
+		"tailwind-merge": "^2.5.2"
 	},
 	"devDependencies": {
 		"@octokit/types": "^13.5.0",

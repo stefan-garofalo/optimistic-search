@@ -4,11 +4,13 @@ import Results from '@/feat/search/components/Results'
 import type { SearchParams } from '@/feat/search/types'
 import Filters from '@/feat/search/components/Filters'
 import SearchBar from '@/feat/search/components/Searchbar'
+import Pagination from '@/feat/search/components/Pagination'
 
 export const experimental_ppr = true
 
 export default function Home({ searchParams }: { searchParams: SearchParams }) {
-	searchParams.q = searchParams.q || 'js'
+	searchParams.q = searchParams.q || 'git'
+	const page = +(searchParams.page || 1)
 
 	return (
 		<main className="min-h-svh p-container flex flex-col gap-y-10">
@@ -21,7 +23,12 @@ export default function Home({ searchParams }: { searchParams: SearchParams }) {
 						<code>useOptimistic</code>.
 					</h2>
 				</div>
-				<SearchBar q={searchParams.q} />
+				<div className="flex items-center justify-between">
+					<SearchBar q={searchParams.q} className="w-1/2" />
+					<div>
+						<Pagination page={page} />
+					</div>
+				</div>
 			</section>
 			<section className="grow grid grid-cols-4 gap-6 first:*:col-span-1 last:*:col-span-3">
 				<Suspense>

@@ -14,13 +14,21 @@ async function get(segment: string, query: URLSearchParams) {
 	return res.json() as Promise<unknown>
 }
 
+type ApiParams = {
+	q?: string
+	sort?: string
+	order?: string
+	limit?: number
+	page?: number
+}
+
 export async function getFilters({
 	q = '',
 	sort = '',
 	order = '',
 	limit = LIMIT,
 	page = 1
-} = {}) {
+}: ApiParams = {}) {
 	const data = (await get(
 		'repositories',
 		new URLSearchParams({
@@ -41,13 +49,7 @@ export async function getRepos({
 	order = '',
 	limit = LIMIT,
 	page = 1
-}: {
-	q?: string
-	sort?: string
-	order?: string
-	limit?: number
-	page?: number
-} = {}) {
+}: ApiParams = {}) {
 	const data = (await get(
 		'repositories',
 		new URLSearchParams({

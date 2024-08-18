@@ -7,12 +7,12 @@ export default async function Results({
 }: {
 	searchParams: SearchParams
 }) {
-	const data = await getRepos(searchParams)
+	const { items } = await getRepos(searchParams)
 
 	return (
 		<div className="border border-current rounded-md p-4 grid grid-cols-3 gap-5">
-			{!!data.items.length &&
-				data?.items.map((item) => <CardRepository key={item.id} {...item} />)}
+			{!!items.length &&
+				items.map((item) => <CardRepository key={item.id} {...item} />)}
 		</div>
 	)
 }

@@ -1,7 +1,11 @@
 import { getFilters } from '@/lib/api'
 import type { SearchParams } from '../types'
 
-export default async function Filters({ searchParams }: SearchParams) {
+export default async function Filters({
+	searchParams
+}: {
+	searchParams: SearchParams
+}) {
 	const filters = await getFilters(searchParams)
 	return (
 		<div className="border border-current rounded-md h-full p-4">

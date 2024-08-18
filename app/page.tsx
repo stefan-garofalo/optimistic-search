@@ -7,7 +7,7 @@ import SearchBar from '@/feat/search/components/Searchbar'
 
 export const experimental_ppr = true
 
-export default function Home({ searchParams }: SearchParams) {
+export default function Home({ searchParams }: { searchParams: SearchParams }) {
 	searchParams.q = searchParams.q || 'js'
 
 	return (

@@ -2,7 +2,11 @@ import { getRepos } from '@/lib/api'
 import { SearchParams } from '../types'
 import CardRepository from '@/feat/UI/Cards/Repository'
 
-export default async function Results({ searchParams }: SearchParams) {
+export default async function Results({
+	searchParams
+}: {
+	searchParams: SearchParams
+}) {
 	const data = await getRepos(searchParams)
 
 	return (

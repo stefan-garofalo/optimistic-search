@@ -1,4 +1,4 @@
-import type { TRepositories } from '@/lib/api'
+import type { TRepositories } from '@/feat/search/types'
 
 export default function CardRepository({
 	name,

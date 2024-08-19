@@ -38,7 +38,7 @@ export default function CardRepository({
 					<span>{full_name.split('/')[0]}</span>
 				)}
 			</h3>
-			<div className="pt-3">{description}</div>
+			<div className="pt-3 text-sm break-all line-clamp-4">{description}</div>
 		</article>
 	)
 }

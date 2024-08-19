@@ -17,6 +17,7 @@ export default function SearchBar({
 }) {
 	const [keywords, setKeywords] = useState(q)
 	const { setQueryParams } = useQueryParams('q')
+
 	function search(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault()
 		setQueryParams(keywords)

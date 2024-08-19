@@ -10,10 +10,9 @@ export const experimental_ppr = true
 
 export default function Home({ searchParams }: { searchParams: SearchParams }) {
 	searchParams.q = searchParams.q || 'git'
-	const page = +(searchParams.page || 1)
-
+	searchParams.page = +(searchParams.page || 1)
 	return (
-		<main className="min-h-svh p-container flex flex-col gap-y-10">
+		<main className="min-h-svh p-container flex flex-col gap-y-6">
 			<section className="flex flex-col gap-y-4">
 				<div>
 					<h1 className="text-2xl font-bold">Optimistic Git</h1>
@@ -26,7 +25,7 @@ export default function Home({ searchParams }: { searchParams: SearchParams }) {
 				<div className="flex items-center justify-between">
 					<SearchBar q={searchParams.q} className="w-1/2" />
 					<div>
-						<Pagination page={page} />
+						<Pagination searchParams={searchParams} page={searchParams.page} />
 					</div>
 				</div>
 			</section>

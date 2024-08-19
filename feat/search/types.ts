@@ -1,7 +1,7 @@
 import { Endpoints } from '@octokit/types'
 
 export type SearchParams = {
-	[key: string]: string | undefined
+	[key: string]: string | number | undefined
 }
 
 export type TRepositories =

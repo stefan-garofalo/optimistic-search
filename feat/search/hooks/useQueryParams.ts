@@ -8,9 +8,9 @@ export default function useQueryParams(key: string) {
 
 	function setQueryParams(value: SearchParams[keyof SearchParams]) {
 		if (!value) params.delete(key)
-		else if (params.getAll(key).includes(value))
+		else if (params.getAll(key).includes(value.toString()))
 			params.getAll(key).map((v) => v !== value && params.append(key, v))
-		else params.set(key, value)
+		else params.set(key, value.toString())
 		push(`?${params.toString()}`)
 	}
 

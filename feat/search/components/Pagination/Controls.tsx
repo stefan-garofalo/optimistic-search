@@ -11,7 +11,6 @@ export default function Controls({ currentPage }: { currentPage: number }) {
 	const [optimsticState, addOptimistic] = useOptimistic(currentPage)
 
 	function paginate(direction: -1 | 1) {
-		console.log('nav')
 		startTransition(() => {
 			if (isPending) return
 			addOptimistic(currentPage + direction)

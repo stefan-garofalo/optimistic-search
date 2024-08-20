@@ -11,6 +11,7 @@ async function get(segment: string, query: URLSearchParams) {
 		},
 		next: { revalidate: 60 }
 	})
+
 	return res.json() as Promise<unknown>
 }
 

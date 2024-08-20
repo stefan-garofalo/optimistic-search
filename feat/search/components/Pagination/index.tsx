@@ -16,7 +16,7 @@ export default async function Pagination({
 	const count = items.length >= 11 ? LIMIT * page : items.length
 	return (
 		<div className="h-full flex items-center gap-x-2">
-			<span className="mt-auto translate-y-1">
+			<span className="mt-auto translate-y-0.5">
 				{count} of {total?.toLocaleString()}
 			</span>
 			<Controls totalCount={total} currentPage={page} />

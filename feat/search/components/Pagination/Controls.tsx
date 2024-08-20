@@ -22,7 +22,7 @@ export default function Controls({
 			data-pending={isPending}
 			className="relative flex items-center gap-x-2"
 		>
-			<span className="absolute top-0 -translate-y-0.5 -left-2 -translate-x-full">
+			<span className="absolute top-0 -left-2 -translate-x-full">
 				Page: {optimsticState}
 			</span>
 			<ButtonPrimary

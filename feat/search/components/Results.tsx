@@ -1,8 +1,9 @@
 import { getRepos } from '@/lib/api'
-import { SearchParams } from '../types'
+import { SearchParams } from '@/feat/search/types'
 import CardRepository from '@/feat/UI/Cards/Repository'
+import SkeletonResults from './Skeletons/Results'
 
-export default async function Results({
+export async function Results({
 	searchParams
 }: {
 	searchParams: SearchParams
@@ -18,3 +19,5 @@ export default async function Results({
 		<h3 className="text-xl font-bold">No results found!</h3>
 	)
 }
+
+export { SkeletonResults as ResultsSkeleton }

@@ -1,7 +1,8 @@
 import { getFilters } from '@/lib/api'
-import type { SearchParams } from '../types'
+import type { SearchParams } from '@/feat/search/types'
+import SkeletonFilters from './Skeletons/Filters'
 
-export default async function Filters({
+export async function Filters({
 	searchParams
 }: {
 	searchParams: SearchParams
@@ -13,3 +14,5 @@ export default async function Filters({
 		</div>
 	) : null
 }
+
+export { SkeletonFilters as FiltersSkeleton }

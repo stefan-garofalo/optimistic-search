@@ -1,8 +1,8 @@
 import { Suspense } from 'react'
-
-import Results from '@/feat/search/components/Results'
 import type { SearchParams } from '@/feat/search/types'
-import Filters from '@/feat/search/components/Filters'
+
+import { Results, ResultsSkeleton } from '@/feat/search/components/Results'
+import { Filters, FiltersSkeleton } from '@/feat/search/components/Filters'
 import SearchBar from '@/feat/search/components/Searchbar'
 import Pagination from '@/feat/search/components/Pagination'
 
@@ -30,10 +30,12 @@ export default function Home({ searchParams }: { searchParams: SearchParams }) {
 				</div>
 			</section>
 			<section className="grow grid grid-cols-4 gap-6 first:*:col-span-1 last:*:col-span-3 min-h-svh">
-				<Suspense>
+				{/* <FiltersSkeleton /> */}
+				{/* <ResultsSkeleton /> */}
+				<Suspense fallback={<FiltersSkeleton />}>
 					<Filters searchParams={searchParams} />
 				</Suspense>
-				<Suspense>
+				<Suspense fallback={<ResultsSkeleton />}>
 					<Results searchParams={searchParams} />
 				</Suspense>
 			</section>

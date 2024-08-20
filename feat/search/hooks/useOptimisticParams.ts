@@ -1,3 +1,5 @@
+'use client'
+
 import { useOptimistic, useTransition } from 'react'
 import useQueryParams from './useQueryParams'
 import { SearchParams } from '../types'

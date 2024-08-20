@@ -5,6 +5,7 @@ import { Results, ResultsSkeleton } from '@/feat/search/components/Results'
 import { Filters, FiltersSkeleton } from '@/feat/search/components/Filters'
 import SearchBar from '@/feat/search/components/Searchbar'
 import Pagination from '@/feat/search/components/Pagination'
+import Sort from '@/feat/search/components/Sort'
 
 export const experimental_ppr = true
 
@@ -24,8 +25,9 @@ export default function Home({ searchParams }: { searchParams: SearchParams }) {
 				</div>
 				<div className="flex items-center justify-between">
 					<SearchBar q={searchParams.q} className="w-1/2" />
-					<div>
+					<div className="flex items-center gap-x-2">
 						<Pagination searchParams={searchParams} page={searchParams.page} />
+						<Sort />
 					</div>
 				</div>
 			</section>

@@ -9,6 +9,7 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
+		"@radix-ui/react-select": "^2.1.1",
 		"@thatapicompany/thecatapi": "^1.0.2",
 		"babel-plugin-react-compiler": "^0.0.0-experimental-52d6685-20240815",
 		"clsx": "^2.1.1",

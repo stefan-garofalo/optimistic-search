@@ -7,6 +7,7 @@ export default function useQueryParams(key: string) {
 	const params = new URLSearchParams(searchParams.toString())
 
 	function setQueryParams(value: SearchParams[keyof SearchParams]) {
+		if (key !== 'page') params.delete('page')
 		if (!value) params.delete(key)
 		else if (params.getAll(key).includes(value.toString()))
 			params.getAll(key).map((v) => v !== value && params.append(key, v))
@@ -15,6 +16,7 @@ export default function useQueryParams(key: string) {
 	}
 
 	function resetQueryParams() {
+		if (key !== 'page') params.delete('page')
 		params.delete(key)
 		push(`?${params.toString()}`)
 	}

@@ -48,10 +48,10 @@ export function formatFilters(items: TRepositories['items']) {
 	}
 
 	return {
-		languages: [...languagesMap.values()],
-		owners: [...ownersMap.values()],
-		statuses: [...statusMap.values()],
-		topics: [...topicsMap.values()]
+		...(!!languagesMap.size ? { languages: [...languagesMap.values()] } : {}),
+		...(!!ownersMap.size ? { owners: [...ownersMap.values()] } : {}),
+		...(!!statusMap.size ? { statuses: [...statusMap.values()] } : {}),
+		...(!!topicsMap.size ? { topics: [...topicsMap.values()] } : {})
 	}
 }
 

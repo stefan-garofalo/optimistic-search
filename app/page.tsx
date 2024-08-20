@@ -29,7 +29,7 @@ export default function Home({ searchParams }: { searchParams: SearchParams }) {
 					</div>
 				</div>
 			</section>
-			<section className="grow grid grid-cols-4 gap-6 first:*:col-span-1 last:*:col-span-3">
+			<section className="grow grid grid-cols-4 gap-6 first:*:col-span-1 last:*:col-span-3 min-h-svh">
 				<Suspense>
 					<Filters searchParams={searchParams} />
 				</Suspense>

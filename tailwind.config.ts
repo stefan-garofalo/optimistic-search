@@ -17,9 +17,16 @@ const config: Config = {
 				container: 'var(--container)'
 			},
 			colors: {
-				background: 'rgb(var(--background-start-rgb))',
-				foreground: 'rgb(var(--foreground-rgb))',
-				secondary: 'rgb(var(--secondary-foreground-rgb))'
+				background: {
+					DEFAULT: 'var(--background)',
+					secondary: 'var(--background-secondary)'
+				},
+				foreground: 'var(--foreground)',
+
+				border: {
+					DEFAULT: 'var(--border)',
+					active: 'var(--border-active)'
+				}
 			}
 		}
 	},

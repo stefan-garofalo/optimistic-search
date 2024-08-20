@@ -9,10 +9,12 @@ export default async function Results({
 }) {
 	const { items } = await getRepos(searchParams)
 
-	return (
-		<div className="grid grid-cols-3 gap-2">
+	return !!items.length ? (
+		<div className="grid grid-cols-3 grid-rows-4 gap-2">
 			{!!items.length &&
 				items.map((item) => <CardRepository key={item.id} {...item} />)}
 		</div>
+	) : (
+		<h3 className="text-xl font-bold">No results found!</h3>
 	)
 }

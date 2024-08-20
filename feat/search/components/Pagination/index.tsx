@@ -16,7 +16,7 @@ export default async function Pagination({
 
 	return (
 		<div className="h-full flex items-center gap-x-2">
-			<span className="mt-auto">
+			<span className="mt-auto translate-y-1">
 				{LIMIT * page} of {count?.toLocaleString()}
 			</span>
 			<Controls currentPage={page} />

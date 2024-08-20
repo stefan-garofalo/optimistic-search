@@ -2,14 +2,16 @@ import { useOptimistic, useTransition } from 'react'
 import useQueryParams from './useQueryParams'
 import { SearchParams } from '../types'
 
-export default function useOptimisticParams(
-	initialState: SearchParams[keyof SearchParams]
-) {
-	const { setQueryParams } = useQueryParams('page')
+export default function useOptimisticParams<T extends keyof SearchParams>(
+	key: string,
+	initialState: SearchParams[T]
+): [SearchParams[T], (updatedState: SearchParams[T]) => void, boolean] {
+	const { setQueryParams } = useQueryParams(key)
 	const [isPending, startTransition] = useTransition()
-	const [optimsticState, addOptimistic] = useOptimistic(initialState)
+	const [optimisticState, addOptimistic] =
+		useOptimistic<SearchParams[T]>(initialState)
 
-	function setOptimisticState(updatedState: SearchParams[keyof SearchParams]) {
+	function setOptimisticState(updatedState: SearchParams[T]) {
 		startTransition(() => {
 			if (isPending) return
 			addOptimistic(updatedState)
@@ -17,5 +19,5 @@ export default function useOptimisticParams(
 		})
 	}
 
-	return [optimsticState, setOptimisticState, isPending]
+	return [optimisticState, setOptimisticState, isPending]
 }

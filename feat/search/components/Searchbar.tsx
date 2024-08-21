@@ -26,7 +26,7 @@ export default function SearchBar({
 	return (
 		<form
 			className={merge(
-				'relative bg-background border border-border [&:hover:not(:has(input:focus))]:border-border-active focus-within:border-foreground transition-colors duration-300 rounded-md flex items-center',
+				'relative bg-background border border-border [&:hover:not(:has(input:focus))]:border-border-active transition-colors duration-300 rounded-md flex items-center',
 				className
 			)}
 			onSubmit={search}
@@ -34,7 +34,7 @@ export default function SearchBar({
 			<IconSearch className="size-5 absolute top-1/2 -translate-y-1/2 left-3" />
 			<input
 				type="text"
-				className="w-full bg-transparent py-2 pl-10 pr-3 focus:outline-none focus:ring-1 focus:ring-foreground focus:ring-offset-2 rounded-[5px]"
+				className="w-full bg-transparent py-2 pl-10 pr-3 focus:outline-2 focus:outline-foreground focus:outline-offset-4 rounded-[5px]"
 				value={keywords}
 				onChange={(e) => setKeywords(e.target.value)}
 			/>

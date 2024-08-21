@@ -11,7 +11,7 @@ export async function Results({
 	const { items } = await getRepos(searchParams)
 
 	return !!items.length ? (
-		<div className="grid grid-cols-3 grid-rows-4 gap-2">
+		<div className="h-full grid grid-cols-3 grid-rows-3 gap-2">
 			{!!items.length &&
 				items.map((item) => <CardRepository key={item.id} {...item} />)}
 		</div>

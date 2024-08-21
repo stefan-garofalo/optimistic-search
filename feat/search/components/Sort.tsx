@@ -21,7 +21,10 @@ export default function Sort() {
 			onValueChange={(e) => setOptimisticState(e)}
 			defaultValue={DEFAULT_SORT.id}
 		>
-			<SelectTrigger data-pending={isPending ? '' : undefined}>
+			<SelectTrigger
+				data-pending={isPending ? '' : undefined}
+				className="gap-x-2"
+			>
 				<IconSort className="size-5" />
 				<SelectValue placeholder="Select a verified email to display" />
 			</SelectTrigger>

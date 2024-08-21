@@ -15,7 +15,7 @@ export default async function Pagination({
 	const { total_count: total, items } = await getRepos(searchParams)
 	const count = items.length >= 11 ? LIMIT * page : items.length
 	return (
-		<div className="h-full flex items-center gap-x-2">
+		<div className="shrink-0 h-full flex items-center gap-x-2">
 			<span className="mt-auto translate-y-0.5">
 				{count} of {total?.toLocaleString()}
 			</span>

@@ -1,4 +1,4 @@
-export const LIMIT = 12
+export const LIMIT = 9
 export const SORTS = [
 	{ id: 'best-match', label: 'Best Match' },
 	{ id: 'stars', label: 'Stars' },

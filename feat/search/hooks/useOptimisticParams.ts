@@ -6,12 +6,14 @@ import { SearchParams } from '../types'
 
 export default function useOptimisticParams<T extends keyof SearchParams>(
 	key: string,
-	initialState: SearchParams[T]
+	initialState?: SearchParams[T]
 ) {
-	const { setQueryParams, appendQueryParams } = useQueryParams(key)
+	const { searchParams, setQueryParams, appendQueryParams, resetQueryParams } =
+		useQueryParams(key)
 	const [isPending, startTransition] = useTransition()
-	const [optimisticState, addOptimistic] =
-		useOptimistic<SearchParams[T]>(initialState)
+	const [optimisticState, addOptimistic] = useOptimistic<
+		SearchParams[T] | SearchParams[T][]
+	>(initialState || searchParams.getAll(key))
 
 	function set(
 		updatedState: SearchParams[T],
@@ -32,10 +34,15 @@ export default function useOptimisticParams<T extends keyof SearchParams>(
 		set(updatedState, appendQueryParams)
 	}
 
+	function resetOptimisticState() {
+		set(undefined, resetQueryParams)
+	}
+
 	return {
 		optimisticState,
 		setOptimisticState,
 		appendOptimisticState,
+		resetOptimisticState,
 		isPending
 	}
 }

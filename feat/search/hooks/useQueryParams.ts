@@ -24,7 +24,6 @@ export default function useQueryParams(key: string) {
 		if (params.getAll(key).includes(value.toString()))
 			params.delete(key, value.toString())
 		else params.append(key, value.toString())
-		console.log('result', params.getAll(key))
 		updateParams()
 	}
 

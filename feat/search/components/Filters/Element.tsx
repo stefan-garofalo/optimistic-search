@@ -20,7 +20,7 @@ export default function FilterElement({
 	return (
 		<>
 			<h2 className="text-lg font-bold capitalize">{query}</h2>
-			<ul className="flex flex-col gap-y-0.5" data-pending={isPending}>
+			<ul className="flex flex-col gap-y-1" data-pending={isPending}>
 				{items.map((filter) => (
 					<li key={filter.value}>
 						<button
@@ -34,9 +34,10 @@ export default function FilterElement({
 									: {}
 							}
 							className={merge(
-								'text-sm',
-								'color' in filter &&
-									`bg-[var(--color)] text-[var(--text-color)] px-1 py-0.5 border border-border font-mono rounded-md`
+								'leading-none p-1',
+								query === 'languages'
+									? `bg-[var(--color)] text-[var(--text-color)] py-0.5 text-sm border border-border font-mono rounded-md hover:opacity-50 transition-opacity duration-300`
+									: 'hover:bg-border-active transition-colors duration-300 rounded-md'
 							)}
 						>
 							{filter.name}

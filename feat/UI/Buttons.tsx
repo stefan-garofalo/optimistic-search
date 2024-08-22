@@ -18,6 +18,7 @@ export function ButtonPrimary({
 			className={merge(
 				'p-2.5 bg-background border border-border hover:border-border-active rounded-md transition-all duration-300',
 				'disabled:opacity-40 disabled:cursor-not-allowed',
+				'data-[pending]:animate-pulse',
 				className
 			)}
 			onClick={onClick}

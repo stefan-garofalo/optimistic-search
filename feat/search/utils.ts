@@ -6,18 +6,18 @@ type TLanguage = {
 	color?: string
 	name: string
 }
-type TFilterLanguage = Omit<TLanguage, 'aliases'> & {
+export type TFilterLanguage = Omit<TLanguage, 'aliases'> & {
 	value: `language:${string}`
 }
-type TFilterOwner = {
+export type TFilterOwner = {
 	value: `${'org' | 'user'}:${string}` | string
 	name: string
 }
-type TFilterStatus = {
+export type TFilterStatus = {
 	value: `is:${'archived' | 'forked'}`
 	name: 'Archived' | 'Forked'
 }
-type TFilterTopic = { name: string; value: `topic:${string}` }
+export type TFilterTopic = { name: string; value: `topic:${string}` }
 
 export function formatFilters(items: TRepositories['items']) {
 	const languagesMap = new Map<string, TFilterLanguage>()

@@ -27,14 +27,16 @@ export default function Controls({
 			</span>
 			<ButtonPrimary
 				onClick={() => setOptimisticState(currentPage - 1)}
-				disabled={isPending || currentPage === 1}
+				disabled={currentPage === 1}
+				data-pending={isPending ? '' : undefined}
 			>
 				<IconArrow className="size-5 rotate-180" />
 				<span className="sr-only">Prev</span>
 			</ButtonPrimary>
 			<ButtonPrimary
 				onClick={() => setOptimisticState(currentPage + 1)}
-				disabled={isPending || (currentPage * LIMIT) % totalCount === 0}
+				disabled={(currentPage * LIMIT) % totalCount === 0}
+				data-pending={isPending ? '' : undefined}
 			>
 				<IconArrow className="size-5" />
 				<span className="sr-only">Next</span>

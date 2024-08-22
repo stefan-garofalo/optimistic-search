@@ -8,13 +8,24 @@ export default function useQueryParams(key: string) {
 	const { push } = useRouter()
 	const params = new URLSearchParams(searchParams.toString())
 
-	function setQueryParams(value: SearchParams[keyof SearchParams]) {
+	function updateParams() {
 		if (key !== 'page') params.delete('page')
-		if (!value) params.delete(key)
-		else if (params.getAll(key).includes(value.toString()))
-			params.getAll(key).map((v) => v !== value && params.append(key, v))
-		else params.set(key, value.toString())
 		push(`?${params.toString()}`)
+	}
+
+	function setQueryParams(value: SearchParams[keyof SearchParams]) {
+		if (!value) params.delete(key)
+		else params.set(key, value.toString())
+		updateParams()
+	}
+
+	function appendQueryParams(value: SearchParams[keyof SearchParams]) {
+		if (!value) return
+		if (params.getAll(key).includes(value.toString()))
+			params.delete(key, value.toString())
+		else params.append(key, value.toString())
+		console.log('result', params.getAll(key))
+		updateParams()
 	}
 
 	function resetQueryParams() {
@@ -23,5 +34,5 @@ export default function useQueryParams(key: string) {
 		push(`?${params.toString()}`)
 	}
 
-	return { searchParams, setQueryParams, resetQueryParams }
+	return { searchParams, setQueryParams, appendQueryParams, resetQueryParams }
 }

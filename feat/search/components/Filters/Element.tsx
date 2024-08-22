@@ -16,13 +16,15 @@ export default function FilterElement({
 	query: string
 	items: TFilterLanguage[] | TFilterOwner[] | TFilterStatus[] | TFilterTopic[]
 }) {
+	const { appendOptimisticState, isPending } = useOptimisticParams(query, '')
 	return (
 		<>
 			<h2 className="text-lg font-bold capitalize">{query}</h2>
-			<ul className="flex flex-col gap-y-0.5">
+			<ul className="flex flex-col gap-y-0.5" data-pending={isPending}>
 				{items.map((filter) => (
 					<li key={filter.value}>
-						<span
+						<button
+							onClick={() => appendOptimisticState(filter.value)}
 							style={
 								'color' in filter
 									? ({
@@ -38,7 +40,7 @@ export default function FilterElement({
 							)}
 						>
 							{filter.name}
-						</span>
+						</button>
 					</li>
 				))}
 			</ul>

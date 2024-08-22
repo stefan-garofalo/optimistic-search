@@ -12,18 +12,13 @@ export default function Controls({
 	currentPage: number
 	totalCount: number
 }) {
-	const [optimsticState, setOptimisticState, isPending] = useOptimisticParams(
-		'page',
-		currentPage
-	)
+	const { optimisticState, setOptimisticState, isPending } =
+		useOptimisticParams('page', currentPage)
 
 	return (
-		<div
-			data-pending={isPending}
-			className="relative flex items-center gap-x-2"
-		>
+		<div className="relative flex items-center gap-x-2">
 			<span className="absolute top-0 -left-2 -translate-x-full">
-				Page: {optimsticState}
+				Page: {optimisticState}
 			</span>
 			<ButtonPrimary
 				onClick={() => setOptimisticState(currentPage - 1)}

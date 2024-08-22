@@ -12,7 +12,7 @@ import {
 import IconSort from '@/feat/UI/Icons/Sort'
 
 export default function Sort() {
-	const [_, setOptimisticState, isPending] = useOptimisticParams(
+	const { setOptimisticState, isPending } = useOptimisticParams(
 		'sort',
 		DEFAULT_SORT.id
 	)

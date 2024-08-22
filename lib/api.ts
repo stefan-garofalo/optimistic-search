@@ -23,24 +23,8 @@ type ApiParams = {
 	page?: number
 }
 
-export async function getFilters({
-	q = '',
-	sort = '',
-	order = '',
-	limit = LIMIT,
-	page = 1
-}: ApiParams = {}) {
-	const data = (await get(
-		'repositories',
-		new URLSearchParams({
-			q,
-			sort,
-			order,
-			per_page: limit.toString(),
-			page: page.toString()
-		})
-	)) as TRepositories
-
+export async function getFilters(params: ApiParams = {}) {
+	const data = await getRepos(params)
 	return formatFilters(data.items)
 }
 

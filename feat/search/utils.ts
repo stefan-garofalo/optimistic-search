@@ -7,17 +7,17 @@ type TLanguage = {
 	name: string
 }
 export type TFilterLanguage = Omit<TLanguage, 'aliases'> & {
-	value: `language:${string}`
+	value: `language:"${string}"`
 }
 export type TFilterOwner = {
-	value: `${'org' | 'user'}:${string}` | string
+	value: `${'org' | 'user'}:"${string}"` | string
 	name: string
 }
 export type TFilterStatus = {
 	value: `is:${'archived' | 'forked'}`
 	name: 'Archived' | 'Forked'
 }
-export type TFilterTopic = { name: string; value: `topic:${string}` }
+export type TFilterTopic = { name: string; value: `topic:"${string}"` }
 
 export function formatFilters(items: TRepositories['items']) {
 	const languagesMap = new Map<string, TFilterLanguage>()
@@ -56,8 +56,10 @@ export function formatFilters(items: TRepositories['items']) {
 }
 
 const formatTopics = (topics?: string[]) =>
-	topics?.map((topic) => ({ name: topic, value: `topic:${topic}` as const })) ??
-	[]
+	topics?.map((topic) => ({
+		name: topic,
+		value: `topic:"${topic}"` as const
+	})) ?? []
 
 const formatStatuses = ({ archived, forks }: TRepositories['items'][0]) =>
 	[
@@ -70,9 +72,9 @@ const formatOwner = (owner?: TRepositories['items'][0]['owner']) =>
 		? ([
 				owner.login,
 				{
-					value: `${owner.type === 'Organization' ? 'org' : 'user'}:${
+					value: `${owner.type === 'Organization' ? 'org' : 'user'}:"${
 						owner.login
-					}`,
+					}"`,
 					name: owner.login
 				}
 		  ] as const)
@@ -88,11 +90,11 @@ const formatLanguage = (
 				item.language,
 				{
 					...langs[item.language as keyof typeof langs],
-					value: `language:${
+					value: `language:"${
 						langs[item.language as keyof typeof langs]?.aliases ?? [
 							item.language
 						]
-					}`,
+					}"`,
 					name: item.language
 				}
 		  ] as const)

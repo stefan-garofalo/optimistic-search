@@ -12,6 +12,7 @@ export async function Filters({
 	searchParams: SearchParams
 }) {
 	const filters = await getFilters(searchParams)
+
 	return !!Object.values(filters).length ? (
 		<div className="relative bg-background border border-border rounded-md max-h-full overflow-auto px-4 py-3">
 			<h2 className="flex items-center gap-x-1.5 text-xl font-bold">

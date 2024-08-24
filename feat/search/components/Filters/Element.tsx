@@ -11,6 +11,14 @@ import { SearchParams } from '@/feat/search/types'
 import IconXMark from '@/feat/UI/Icons/XMark'
 import { ClassValue } from 'clsx'
 
+type FilterElementProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+	active: boolean
+	query: string
+	filter: TFilterLanguage | TFilterOwner | TFilterStatus | TFilterTopic
+	onClick: (updatedState: SearchParams[keyof SearchParams]) => void
+	className?: ClassValue
+}
+
 export default function FilterElement({
 	active,
 	query,
@@ -18,13 +26,7 @@ export default function FilterElement({
 	onClick,
 	className,
 	...props
-}: {
-	active: boolean
-	query: string
-	filter: TFilterLanguage | TFilterOwner | TFilterStatus | TFilterTopic
-	onClick: (updatedState: SearchParams[keyof SearchParams]) => void
-	className?: ClassValue
-}) {
+}: FilterElementProps) {
 	return (
 		<button
 			onClick={() => onClick(filter.value)}

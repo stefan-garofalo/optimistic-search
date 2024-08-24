@@ -1,7 +1,6 @@
 import { LIMIT } from '@/feat/search/config'
 import { TRepositories } from '@/feat/search/types'
 import { formatFilters } from '@/feat/search/utils'
-import { isArray } from 'util'
 
 async function get(segment: string, query: URLSearchParams) {
 	const res = await fetch(`${process.env.API_ENDPOINT}/${segment}?${query}`, {

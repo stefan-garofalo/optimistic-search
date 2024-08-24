@@ -31,7 +31,7 @@ export default function Home({ searchParams }: { searchParams: SearchParams }) {
 					</div>
 				</div>
 			</section>
-			<section className="grid grid-cols-4 gap-6 first:*:col-span-1 last:*:col-span-3 h-[75svh]">
+			<section className="group/query grid grid-cols-4 gap-6 first:*:col-span-1 last:*:col-span-3 h-[75svh]">
 				<Suspense fallback={<FiltersSkeleton />}>
 					<Filters searchParams={searchParams} />
 				</Suspense>

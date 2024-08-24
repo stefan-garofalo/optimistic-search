@@ -14,7 +14,7 @@ export async function Filters({
 	const filters = await getFilters(searchParams)
 
 	return !!Object.values(filters).length ? (
-		<div className="relative bg-background border border-border rounded-md max-h-full overflow-auto px-4 py-3">
+		<div className="relative bg-background border border-border rounded-md max-h-full overflow-auto px-4 py-3 group-has-[[data-pending]]/query:animate-pulse">
 			<h2 className="flex items-center gap-x-1.5 text-xl font-bold">
 				<span>Filters</span>
 				<IconFilter className="size-5" />

@@ -16,17 +16,24 @@ export default function FilterList({
 	query: string
 	items: TFilterLanguage[] | TFilterOwner[] | TFilterStatus[] | TFilterTopic[]
 }) {
-	const { appendOptimisticState, isPending } = useOptimisticParams('filter')
+	const { optimisticState, appendOptimisticState, isPending } =
+		useOptimisticParams<string[]>('filter')
+
 	return (
 		<>
 			<h2 className="text-lg font-bold capitalize">{query}</h2>
-			<ul className="flex flex-col gap-y-1" data-pending={isPending}>
+			<ul
+				className="flex flex-col gap-y-1"
+				data-pending={isPending ? '' : undefined}
+			>
 				{items.map((filter) => (
 					<li key={filter.value}>
 						<FilterElement
+							active={optimisticState.includes(filter.value)}
 							query={query}
 							filter={filter}
-							onClick={appendOptimisticState}
+							onClick={(value) => appendOptimisticState(value as string[])}
+							disabled={isPending}
 						/>
 					</li>
 				))}

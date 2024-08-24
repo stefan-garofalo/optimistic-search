@@ -4,33 +4,29 @@ import { useOptimistic, useTransition } from 'react'
 import useQueryParams from './useQueryParams'
 import { SearchParams } from '../types'
 
-export default function useOptimisticParams<T extends keyof SearchParams>(
-	key: string,
-	initialState?: SearchParams[T]
-) {
+export default function useOptimisticParams<
+	V extends SearchParams[keyof SearchParams] = SearchParams[keyof SearchParams]
+>(key: string, initialState?: V) {
 	const { searchParams, setQueryParams, appendQueryParams, resetQueryParams } =
-		useQueryParams(key)
+		useQueryParams(key.toString())
 	const [isPending, startTransition] = useTransition()
-	const [optimisticState, addOptimistic] = useOptimistic<
-		SearchParams[T] | SearchParams[T][]
-	>(initialState || searchParams.getAll(key))
+	const [optimisticState, addOptimistic] = useOptimistic<V>(
+		(initialState ?? searchParams.getAll(key.toString())) as V
+	)
 
-	function set(
-		updatedState: SearchParams[T],
-		fn: (value: SearchParams[T]) => void
-	) {
+	function set(updatedState: V | undefined, fn: (value: V) => void) {
 		startTransition(() => {
-			if (isPending) return
+			if (isPending || !updatedState) return
 			addOptimistic(updatedState)
 			fn(updatedState)
 		})
 	}
 
-	function setOptimisticState(updatedState: SearchParams[T]) {
+	function setOptimisticState(updatedState: V) {
 		set(updatedState, setQueryParams)
 	}
 
-	function appendOptimisticState(updatedState: SearchParams[T]) {
+	function appendOptimisticState(updatedState: V) {
 		set(updatedState, appendQueryParams)
 	}
 

@@ -8,15 +8,22 @@ import type {
 	TFilterTopic
 } from '@/feat/search/utils'
 import { SearchParams } from '@/feat/search/types'
+import IconXMark from '@/feat/UI/Icons/XMark'
+import { ClassValue } from 'clsx'
 
 export default function FilterElement({
+	active,
 	query,
 	filter,
-	onClick
+	onClick,
+	className,
+	...props
 }: {
+	active: boolean
 	query: string
 	filter: TFilterLanguage | TFilterOwner | TFilterStatus | TFilterTopic
-	onClick: (value: SearchParams[keyof SearchParams]) => void
+	onClick: (updatedState: SearchParams[keyof SearchParams]) => void
+	className?: ClassValue
 }) {
 	return (
 		<button
@@ -30,13 +37,17 @@ export default function FilterElement({
 					: {}
 			}
 			className={merge(
-				'leading-none p-1',
+				'leading-none p-1 flex items-center gap-x-1.5 rounded-md disabled:cursor-not-allowed',
+				active && ' text-sm border border-border ',
 				query === 'languages'
-					? `bg-[var(--color)] text-[var(--text-color)] py-0.5 text-sm border border-border font-mono rounded-md hover:opacity-50 transition-opacity duration-300`
-					: 'hover:bg-border-active transition-colors duration-300 rounded-md'
+					? `bg-[var(--color)] text-[var(--text-color)] text-sm border border-border font-mono hover:opacity-50 transition-opacity duration-300`
+					: 'hover:bg-border-active transition-colors duration-300',
+				className
 			)}
+			{...props}
 		>
 			{filter.name}
+			{active && <IconXMark className="size-4 stroke-2" />}
 		</button>
 	)
 }

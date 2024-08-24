@@ -14,7 +14,8 @@ export default function FilterReset({ className }: { className?: ClassValue }) {
 		<ButtonPrimary
 			className={merge('', className)}
 			onClick={resetOptimisticState}
-			data-pending={isPending}
+			data-pending={isPending ? '' : undefined}
+			disabled={isPending}
 		>
 			<IconReset className="size-4" />
 			<span className="sr-only">Reset filters</span>

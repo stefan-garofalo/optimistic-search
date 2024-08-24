@@ -10,7 +10,7 @@ async function get(segment: string, query: URLSearchParams) {
 			'Content-Type': 'application/vnd.github.text-match+json',
 			'X-GitHub-Api-Version': '2022-11-28'
 		},
-		next: { revalidate: 60 }
+		cache: 'force-cache'
 	})
 
 	return res.json() as Promise<unknown>

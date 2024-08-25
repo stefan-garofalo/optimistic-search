@@ -1,8 +1,8 @@
 'use client'
 
 import useOptimisticParams from '@/feat/search/hooks/useOptimisticParams'
-import { ButtonPrimary } from '@/UI/Buttons'
-import IconReset from '@/UI/Icons/Reset'
+import { ButtonPrimary } from '@/ui/Buttons'
+import IconReset from '@/ui/Icons/Reset'
 import { merge } from '@/lib/tailwind'
 import { ClassValue } from 'clsx'
 

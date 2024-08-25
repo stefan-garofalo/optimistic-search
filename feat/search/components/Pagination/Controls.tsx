@@ -2,8 +2,8 @@
 
 import useOptimisticParams from '@/feat/search/hooks/useOptimisticParams'
 import { LIMIT } from '@/feat/search/config'
-import { ButtonPrimary } from '@/UI/Buttons'
-import IconArrow from '@/UI/Icons/Arrow'
+import { ButtonPrimary } from '@/ui/Buttons'
+import IconArrow from '@/ui/Icons/Arrow'
 
 export default function Controls({
 	currentPage,

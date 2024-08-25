@@ -8,8 +8,8 @@ import {
 	SelectItem,
 	SelectTrigger,
 	SelectValue
-} from '@/UI/Select'
-import IconSort from '@/UI/Icons/Sort'
+} from '@/ui/Select'
+import IconSort from '@/ui/Icons/Sort'
 
 export default function Sort() {
 	const { setOptimisticState, isPending } = useOptimisticParams(

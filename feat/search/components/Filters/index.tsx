@@ -4,7 +4,7 @@ import type { SearchParams } from '@/feat/search/types'
 import FilterList from './List'
 import FilterReset from './Reset'
 import SkeletonFilters from '../Skeletons/Filters'
-import IconFilter from '@/UI/Icons/Filter'
+import IconFilter from '@/ui/Icons/Filter'
 
 export async function Filters({
 	searchParams

@@ -8,7 +8,7 @@ import type {
 	TFilterTopic
 } from '@/feat/search/utils'
 import { SearchParams } from '@/feat/search/types'
-import IconXMark from '@/feat/UI/Icons/XMark'
+import IconXMark from '@/UI/Icons/XMark'
 import { ClassValue } from 'clsx'
 
 type FilterElementProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {

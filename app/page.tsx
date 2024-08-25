@@ -18,14 +18,14 @@ export default function Home({ searchParams }: { searchParams: SearchParams }) {
 	return (
 		<main className="group/query h-svh p-container flex flex-col gap-y-6">
 			<section className="flex flex-col gap-y-4">
-				<div>
+				<header>
 					<h1 className="text-2xl font-bold">Optimistic Git</h1>
 					<h2 className="text-lg">
 						All the new React and Next jazz to power GitHub&apos;s search API:
 						<code>PPR</code>, <code>&lt;Suspense&gt;</code>, Streaming and
 						<code>useOptimistic</code>.
 					</h2>
-				</div>
+				</header>
 				<div className="flex items-center justify-between">
 					<SearchBar q={searchParams.q} className="w-1/2" />
 					<div className="flex items-center gap-x-2">

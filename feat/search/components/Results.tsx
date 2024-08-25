@@ -1,6 +1,6 @@
 import { getRepos } from '@/lib/api'
 import { SearchParams } from '@/feat/search/types'
-import CardRepository from '@/feat/UI/Cards/Repository'
+import CardRepository from '@/UI/Cards/Repository'
 import SkeletonResults from './Skeletons/Results'
 
 export async function Results({

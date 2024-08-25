@@ -4,7 +4,7 @@ import { useState } from 'react'
 import useQueryParams from '@/feat/search/hooks/useQueryParams'
 
 import { SearchParams } from '../types'
-import IconSearch from '@/feat/UI/Icons/Search'
+import IconSearch from '@/UI/Icons/Search'
 import { merge } from '@/lib/tailwind'
 import { ClassValue } from 'clsx'
 

@@ -14,7 +14,7 @@ export default function Controls({
 }) {
 	const { optimisticState, setOptimisticState, isPending } =
 		useOptimisticParams('page', currentPage)
-
+	console.log(optimisticState)
 	return (
 		<div className="relative flex items-center gap-x-2">
 			<span className="absolute top-0 -left-2 -translate-x-full">
@@ -22,7 +22,7 @@ export default function Controls({
 			</span>
 			<ButtonPrimary
 				onClick={() => setOptimisticState(currentPage - 1)}
-				disabled={currentPage === 1}
+				disabled={isPending || currentPage === 1}
 				data-pending={isPending ? '' : undefined}
 			>
 				<IconArrow className="size-5 rotate-180" />
@@ -30,7 +30,7 @@ export default function Controls({
 			</ButtonPrimary>
 			<ButtonPrimary
 				onClick={() => setOptimisticState(currentPage + 1)}
-				disabled={(currentPage * LIMIT) % totalCount === 0}
+				disabled={isPending || currentPage * LIMIT >= totalCount}
 				data-pending={isPending ? '' : undefined}
 			>
 				<IconArrow className="size-5" />

@@ -22,8 +22,9 @@ export default function Sort() {
 			defaultValue={DEFAULT_SORT.id}
 		>
 			<SelectTrigger
+				disabled={isPending}
 				data-pending={isPending ? '' : undefined}
-				className="gap-x-2"
+				className="gap-x-2 disabled:cursor-not-allowed disabled:opacity-50"
 			>
 				<IconSort className="size-5" />
 				<SelectValue placeholder="Select a verified email to display" />

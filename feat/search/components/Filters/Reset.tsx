@@ -10,7 +10,7 @@ export default function FilterReset({ className }: { className?: ClassValue }) {
 	const { optimisticState, resetOptimisticState, isPending } =
 		useOptimisticParams('filter')
 	const filters = optimisticState as string[]
-	return filters && filters?.length > 2 ? (
+	return filters && filters?.length >= 2 ? (
 		<ButtonPrimary
 			className={merge('', className)}
 			onClick={resetOptimisticState}

@@ -2,7 +2,10 @@ import { Suspense } from 'react'
 import type { SearchParams } from '@/feat/search/types'
 
 import { Results, ResultsSkeleton } from '@/feat/search/components/Results'
-import { Filters, FiltersSkeleton } from '@/feat/search/components/Filters/index'
+import {
+	Filters,
+	FiltersSkeleton
+} from '@/feat/search/components/Filters/index'
 import SearchBar from '@/feat/search/components/Searchbar'
 import Pagination from '@/feat/search/components/Pagination'
 import Sort from '@/feat/search/components/Sort'
@@ -13,7 +16,7 @@ export default function Home({ searchParams }: { searchParams: SearchParams }) {
 	searchParams.q = searchParams.q || 'git'
 	searchParams.page = +(searchParams.page || 1)
 	return (
-		<main className="h-svh p-container flex flex-col gap-y-6">
+		<main className="group/query h-svh p-container flex flex-col gap-y-6">
 			<section className="flex flex-col gap-y-4">
 				<div>
 					<h1 className="text-2xl font-bold">Optimistic Git</h1>
@@ -31,7 +34,7 @@ export default function Home({ searchParams }: { searchParams: SearchParams }) {
 					</div>
 				</div>
 			</section>
-			<section className="group/query grid grid-cols-4 gap-6 first:*:col-span-1 last:*:col-span-3 h-[75svh]">
+			<section className="grid grid-cols-4 gap-6 first:*:col-span-1 last:*:col-span-3 h-[75svh]">
 				<Suspense fallback={<FiltersSkeleton />}>
 					<Filters searchParams={searchParams} />
 				</Suspense>

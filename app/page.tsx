@@ -1,14 +1,16 @@
 import { Suspense } from 'react'
-import type { SearchParams } from '@/feat/search/types'
 
+import type { SearchParams } from '@/feat/search/types'
+import SearchBar from '@/feat/search/components/Searchbar'
+import Pagination from '@/feat/search/components/Pagination'
+import Sort from '@/feat/search/components/Sort'
 import { Results, ResultsSkeleton } from '@/feat/search/components/Results'
 import {
 	Filters,
 	FiltersSkeleton
 } from '@/feat/search/components/Filters/index'
-import SearchBar from '@/feat/search/components/Searchbar'
-import Pagination from '@/feat/search/components/Pagination'
-import Sort from '@/feat/search/components/Sort'
+
+import Header from '@/feat/sections/header'
 
 export const experimental_ppr = true
 
@@ -18,18 +20,11 @@ export default function Home({ searchParams }: { searchParams: SearchParams }) {
 	return (
 		<main className="group/query h-svh p-container flex flex-col gap-y-6">
 			<section className="flex flex-col gap-y-4">
-				<header>
-					<h1 className="text-2xl font-bold">Optimistic Git</h1>
-					<h2 className="text-lg">
-						All the new React and Next jazz to power GitHub&apos;s search API:
-						<code>PPR</code>, <code>&lt;Suspense&gt;</code>, Streaming and
-						<code>useOptimistic</code>.
-					</h2>
-				</header>
+				<Header />
 				<div className="flex items-center justify-between">
 					<SearchBar q={searchParams.q} className="w-1/2" />
 					<div className="flex items-center gap-x-2">
-						<Pagination searchParams={searchParams} page={searchParams.page} />
+						{/* <Pagination searchParams={searchParams} page={searchParams.page} /> */}
 						<Sort />
 					</div>
 				</div>

@@ -14,7 +14,6 @@ export default function Controls({
 }) {
 	const { optimisticState, setOptimisticState, isPending } =
 		useOptimisticParams('page', currentPage)
-	console.log(optimisticState)
 	return (
 		<div className="relative flex items-center gap-x-2">
 			<span className="absolute top-0 -left-2 -translate-x-full">

@@ -24,7 +24,7 @@ export default function Home({ searchParams }: { searchParams: SearchParams }) {
 				<div className="flex items-center justify-between">
 					<SearchBar q={searchParams.q} className="w-1/2" />
 					<div className="flex items-center gap-x-2">
-						{/* <Pagination searchParams={searchParams} page={searchParams.page} /> */}
+						<Pagination searchParams={searchParams} page={searchParams.page} />
 						<Sort />
 					</div>
 				</div>

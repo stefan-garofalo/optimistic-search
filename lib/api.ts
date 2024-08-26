@@ -1,6 +1,16 @@
+import { ok, err } from 'neverthrow'
 import { LIMIT } from '@/feat/search/config'
-import { TRepositories } from '@/feat/search/types'
+import { TRepositories, ApiError } from '@/feat/search/types'
 import { formatFilters } from '@/feat/search/utils'
+
+type ApiParams = {
+	q?: string
+	sort?: string
+	order?: string
+	limit?: number
+	page?: number
+	filter?: string | string[]
+}
 
 async function get(segment: string, query: URLSearchParams) {
 	const res = await fetch(`${process.env.API_ENDPOINT}/${segment}?${query}`, {
@@ -12,21 +22,23 @@ async function get(segment: string, query: URLSearchParams) {
 		cache: 'force-cache'
 	})
 
-	return res.json() as Promise<unknown>
-}
-
-type ApiParams = {
-	q?: string
-	sort?: string
-	order?: string
-	limit?: number
-	page?: number
-	filter?: string | string[]
+	const data = await res.json()
+	return !res.ok
+		? err({
+				message: data.message.replace(
+					/for \b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b\s?\.\s/g,
+					'. '
+				),
+				documentation_url: data.documentation_url,
+				status: res.status,
+				statusText: res.statusText
+		  } as ApiError)
+		: ok(data as TRepositories)
 }
 
 export async function getFilters(params: ApiParams = {}) {
 	const data = await getRepos(params)
-	return formatFilters(data.items)
+	return data.isErr() ? [] : formatFilters(data.value.items)
 }
 
 export async function getRepos({
@@ -37,7 +49,7 @@ export async function getRepos({
 	page = 1,
 	filter = []
 }: ApiParams = {}) {
-	const data = (await get(
+	const data = await get(
 		'repositories',
 		new URLSearchParams({
 			q: [q, ...(Array.isArray(filter) ? filter : [filter])]
@@ -48,7 +60,7 @@ export async function getRepos({
 			per_page: limit.toString(),
 			page: page.toString()
 		})
-	)) as TRepositories
+	)
 
 	return data
 }

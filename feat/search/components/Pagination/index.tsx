@@ -12,7 +12,9 @@ export default async function Pagination({
 	searchParams: SearchParams
 	page: number
 }) {
-	const { total_count: total, items } = await getRepos(searchParams)
+	const data = await getRepos(searchParams)
+	if (data.isErr()) return null
+	const { total_count: total, items } = data.value
 	const count = items.length >= 11 ? LIMIT * page : items.length
 	return (
 		<div className="shrink-0 h-full flex items-center gap-x-2">

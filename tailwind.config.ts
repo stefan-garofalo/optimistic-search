@@ -23,7 +23,7 @@ const config: Config = {
 					secondary: 'var(--background-secondary)'
 				},
 				foreground: 'var(--foreground)',
-
+				error: 'var(--error)',
 				border: {
 					DEFAULT: 'var(--border)',
 					active: 'var(--border-active)'

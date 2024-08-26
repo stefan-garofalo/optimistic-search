@@ -9,6 +9,7 @@
 	--border: #ebebeb;
 	--border-active: #c9c9c9;
 	--container: 2.5rem;
+	--error: #ea001d;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,6 +19,7 @@
 		--background-secondary: #0d0d0d;
 		--border: #313131;
 		--border-active: #454545;
+		--error: #ff676d;
 	}
 }
 

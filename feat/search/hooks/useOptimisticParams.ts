@@ -10,23 +10,23 @@ export default function useOptimisticParams<
 	const { searchParams, setQueryParams, appendQueryParams, resetQueryParams } =
 		useQueryParams(key.toString())
 	const [isPending, startTransition] = useTransition()
-	const [optimisticState, addOptimistic] = useOptimistic<V>(
+	const [optimisticState, addOptimistic] = useOptimistic<V | undefined>(
 		(initialState ?? searchParams.getAll(key.toString())) as V
 	)
 
-	function set(updatedState: V | undefined, fn: (value: V) => void) {
+	function set(updatedState: V | undefined, fn: (value: V | undefined) => void) {
 		startTransition(() => {
-			if (isPending || !updatedState) return
+			if (isPending) return
 			addOptimistic(updatedState)
 			fn(updatedState)
 		})
 	}
 
-	function setOptimisticState(updatedState: V) {
+	function setOptimisticState(updatedState: V | undefined) {
 		set(updatedState, setQueryParams)
 	}
 
-	function appendOptimisticState(updatedState: V) {
+	function appendOptimisticState(updatedState: V | undefined) {
 		set(updatedState, appendQueryParams)
 	}
 

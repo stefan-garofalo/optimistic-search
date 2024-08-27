@@ -4,6 +4,7 @@ import { SearchParams } from '@/feat/search/types'
 import { LIMIT } from '@/feat/search/config'
 
 import Controls from './Controls'
+import SkeletonPagination from '../Skeletons/Pagination'
 
 export default async function Pagination({
 	searchParams,
@@ -17,7 +18,7 @@ export default async function Pagination({
 	const { total_count: total, items } = data.value
 	const count = items.length >= 11 ? LIMIT * page : items.length
 	return (
-		<div className="shrink-0 h-full flex items-center gap-x-2">
+		<div className="shrink-0 h-full flex items-center gap-x-3">
 			<span className="mt-auto translate-y-0.5">
 				{count} of {total?.toLocaleString()}
 			</span>
@@ -25,3 +26,5 @@ export default async function Pagination({
 		</div>
 	)
 }
+
+export { SkeletonPagination as PaginationSkeleton }

@@ -5,7 +5,7 @@ import CardRepository from '@/ui/Cards/Repository'
 import Error from './Error'
 import SkeletonResults from './Skeletons/Results'
 
-export async function Results({
+export default async function Results({
 	searchParams
 }: {
 	searchParams: SearchParams

@@ -12,11 +12,13 @@ export default function Controls({
 	currentPage: number
 	totalCount: number
 }) {
-	const { optimisticState, setOptimisticState, isPending } =
-		useOptimisticParams('page', currentPage)
+	const { optimisticState, setOptimisticState, isPending } = useOptimisticParams(
+		'page',
+		currentPage
+	)
 	return (
 		<div className="relative flex items-center gap-x-2">
-			<span className="absolute top-0 -left-2 -translate-x-full">
+			<span className="absolute top-0 -left-3 -translate-x-full">
 				Page: {optimisticState}
 			</span>
 			<PrimaryButtonLink

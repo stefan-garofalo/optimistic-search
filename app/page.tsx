@@ -3,13 +3,10 @@ import { generate } from '@/lib/metadata'
 
 import type { SearchParams } from '@/feat/search/types'
 import SearchBar from '@/feat/search/components/Searchbar'
-import Pagination from '@/feat/search/components/Pagination'
+import Results, { ResultsSkeleton } from '@/feat/search/components/Results'
+import Filters, { FiltersSkeleton } from '@/feat/search/components/Filters/index'
+import Pagination, { PaginationSkeleton } from '@/feat/search/components/Pagination'
 import Sort from '@/feat/search/components/Sort'
-import { Results, ResultsSkeleton } from '@/feat/search/components/Results'
-import {
-	Filters,
-	FiltersSkeleton
-} from '@/feat/search/components/Filters/index'
 
 import Header from '@/feat/sections/header'
 
@@ -32,8 +29,10 @@ export default function Home({ searchParams }: { searchParams: SearchParams }) {
 				<Header />
 				<div className="flex items-center justify-between">
 					<SearchBar q={searchParams.q} className="w-1/2" />
-					<div className="flex items-center gap-x-2">
-						<Pagination searchParams={searchParams} page={searchParams.page} />
+					<div className="h-full flex items-center gap-x-2">
+						<Suspense fallback={<PaginationSkeleton />}>
+							<Pagination searchParams={searchParams} page={searchParams.page} />
+						</Suspense>
 						<Sort />
 					</div>
 				</div>

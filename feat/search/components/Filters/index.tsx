@@ -6,7 +6,7 @@ import FilterReset from './Reset'
 import SkeletonFilters from '../Skeletons/Filters'
 import IconFilter from '@/ui/Icons/Filter'
 
-export async function Filters({
+export default async function Filters({
 	searchParams
 }: {
 	searchParams: SearchParams

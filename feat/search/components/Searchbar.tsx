@@ -1,13 +1,12 @@
 'use client'
 
 import { useState } from 'react'
-import useQueryParams from '@/feat/search/hooks/useQueryParams'
-
+import useOptimisticParams from '../hooks/useOptimisticParams'
 import { SearchParams } from '../types'
-import IconSearch from '@/ui/Icons/Search'
+
 import { merge } from '@/lib/tailwind'
 import { ClassValue } from 'clsx'
-import useOptimisticParams from '../hooks/useOptimisticParams'
+import IconSearch from '@/ui/Icons/Search'
 
 export default function SearchBar({
 	q,

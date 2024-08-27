@@ -1,4 +1,5 @@
 import { Suspense } from 'react'
+import { generate } from '@/lib/metadata'
 
 import type { SearchParams } from '@/feat/search/types'
 import SearchBar from '@/feat/search/components/Searchbar'
@@ -13,7 +14,14 @@ import {
 import Header from '@/feat/sections/header'
 
 export const experimental_ppr = true
-
+export function generateMetadata() {
+	return generate({
+		title: 'Optimistic Git',
+		description:
+			'All the new React and Next jazz to power Github Search API. ft: PPR, Suspense, Streaming, optimistic updates and auth',
+		canonical: '/'
+	})
+}
 export default function Home({ searchParams }: { searchParams: SearchParams }) {
 	searchParams.q = searchParams.q || 'git'
 	searchParams.page = +(searchParams.page || 1)

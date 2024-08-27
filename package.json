@@ -11,12 +11,12 @@
 	"dependencies": {
 		"@radix-ui/react-select": "^2.1.1",
 		"@thatapicompany/thecatapi": "^1.0.2",
+		"@vercel/analytics": "^1.3.1",
 		"babel-plugin-react-compiler": "^0.0.0-experimental-52d6685-20240815",
 		"clsx": "^2.1.1",
 		"eslint-config-next": "^15.0.0-rc.0",
 		"eslint-plugin-react-compiler": "^0.0.0-experimental-9aef357-20240815",
 		"iron-session": "^8.0.3",
-		"jsonwebtoken": "^9.0.2",
 		"neverthrow": "^7.0.1",
 		"next": "^15.0.0-rc.0",
 		"react": "^19.0.0-rc-49496d49-20240814",

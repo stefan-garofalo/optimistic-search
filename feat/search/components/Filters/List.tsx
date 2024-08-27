@@ -29,7 +29,7 @@ export default function FilterList({
 				{items.map((filter) => (
 					<li key={filter.value}>
 						<FilterElement
-							active={optimisticState.includes(filter.value)}
+							active={(optimisticState as string[]).includes(filter.value)}
 							query={query}
 							filter={filter}
 							onClick={(value) => appendOptimisticState(value as string[])}

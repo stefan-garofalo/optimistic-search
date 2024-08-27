@@ -17,7 +17,7 @@ type ButtonLinkProps = {
 function ButtonLink({ className, children, ...props }: ButtonLinkProps) {
 	const defaultClassName = merge(
 		'text-sm p-2.5 rounded-md transition-all duration-300',
-		'disabled:opacity-40 disabled:cursor-not-allowed',
+		'disabled:opacity-40 disabled:cursor-not-allowed data-[disabled]:opacity-40 data-[disabled]:cursor-not-allowed',
 		'data-[pending]:animate-pulse',
 		className
 	)

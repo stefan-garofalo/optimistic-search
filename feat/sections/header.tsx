@@ -1,6 +1,8 @@
+import { getSessionCookie } from '@/lib/auth'
 import { SecondaryButtonLink } from '@/ui/ButtonLink'
 
-export default function Header() {
+export default async function Header() {
+	const isLoggedIn = !!(await getSessionCookie('ghtoken'))
 	return (
 		<header className="flex items-end justify-between">
 			<div>
@@ -11,7 +13,12 @@ export default function Header() {
 					<code>useOptimistic</code>.
 				</h2>
 			</div>
-			<SecondaryButtonLink href="/api/login">Login</SecondaryButtonLink>
+			<SecondaryButtonLink
+				{...(isLoggedIn ? {} : { href: '/api/login' })}
+				data-disabled={isLoggedIn}
+			>
+				{isLoggedIn ? 'Logged!' : 'Login'}
+			</SecondaryButtonLink>
 		</header>
 	)
 }

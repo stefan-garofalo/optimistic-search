@@ -1,4 +1,5 @@
 import { ok, err } from 'neverthrow'
+import { getSessionCookie } from '@/lib/auth'
 import { LIMIT } from '@/feat/search/config'
 import { TRepositories, ApiError } from '@/feat/search/types'
 import { formatFilters } from '@/feat/search/utils'
@@ -13,9 +14,11 @@ type ApiParams = {
 }
 
 async function get(segment: string, query: URLSearchParams) {
+	const token = await getSessionCookie('ghtoken')
 	const res = await fetch(`${process.env.API_ENDPOINT}/${segment}?${query}`, {
 		method: 'GET',
 		headers: {
+			...(token ? { Authorization: `bearer ${token}` } : {}),
 			'Content-Type': 'application/vnd.github.text-match+json',
 			'X-GitHub-Api-Version': '2022-11-28'
 		},

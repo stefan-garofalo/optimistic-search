@@ -17,6 +17,7 @@ export const experimental_ppr = true
 export default function Home({ searchParams }: { searchParams: SearchParams }) {
 	searchParams.q = searchParams.q || 'git'
 	searchParams.page = +(searchParams.page || 1)
+
 	return (
 		<main className="group/query h-svh p-container flex flex-col gap-y-6">
 			<section className="flex flex-col gap-y-4">

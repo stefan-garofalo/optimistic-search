@@ -27,6 +27,12 @@ export async function setSessionCookie({ cookieName, value }: SessionParams) {
 	await session.save()
 }
 
-export const OAuthAuthorizeUrl = `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}&redirect_uri=${process.env.PROD_URL}&state=${process.env.GITHUB_SALT}`
+export const OAuthAuthorizeUrl = `https://github.com/login/oauth/authorize?client_id=${
+	process.env.GITHUB_CLIENT_ID
+}&redirect_uri=${
+	!!+(process.env?.IS_DEV ?? '0')
+		? 'http://localhost:3000/api/auth'
+		: `${process.env.PROD_URL}/api/auth`
+}&state=${process.env.GITHUB_SALT}`
 
 export const OAuthTokenUrl = `https://github.com/login/oauth/access_token?client_id=${process.env.GITHUB_CLIENT_ID}&client_secret=${process.env.GITHUB_CLIENT_SECRET}`

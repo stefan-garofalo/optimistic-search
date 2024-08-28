@@ -21,9 +21,9 @@ export default function FilterList({
 
 	return (
 		<>
-			<h2 className="text-lg font-bold capitalize">{query}</h2>
+			<h2 className="text-sm lg:text-lg font-bold capitalize">{query}</h2>
 			<ul
-				className="flex flex-col gap-y-1"
+				className="text-sm lg:text-base flex flex-col gap-y-0.5 lg:gap-y-1"
 				data-pending={isPending ? '' : undefined}
 			>
 				{items.map((filter) => (

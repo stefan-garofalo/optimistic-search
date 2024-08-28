@@ -3,26 +3,36 @@ import { getRepos } from '@/lib/api'
 import { SearchParams } from '@/feat/search/types'
 import { LIMIT } from '@/feat/search/config'
 
+import { merge } from '@/lib/tailwind'
+import { ClassValue } from 'clsx'
 import Controls from './Controls'
 import SkeletonPagination from '../Skeletons/Pagination'
 
-export default async function Pagination({
-	searchParams,
-	page
-}: {
+type PaginationProps = {
+	className?: ClassValue
 	searchParams: SearchParams
 	page: number
-}) {
+}
+
+export default async function Pagination({
+	searchParams,
+	page,
+	className
+}: PaginationProps) {
 	const data = await getRepos(searchParams)
 	if (data.isErr()) return null
+
 	const { total_count: total, items } = data.value
-	const count = items.length >= 11 ? LIMIT * page : items.length
+	const currentCount = items.length >= 11 ? LIMIT * page : items.length
+
 	return (
-		<div className="shrink-0 h-full flex items-center gap-x-3">
-			<span className="mt-auto translate-y-0.5">
-				{count} of {total?.toLocaleString()}
-			</span>
-			<Controls totalCount={total} currentPage={page} />
+		<div
+			className={merge(
+				'shrink-0 flex flex-row-reverse lg:flex-row items-center gap-x-3',
+				className
+			)}
+		>
+			<Controls currentCount={currentCount} totalCount={total} currentPage={page} />
 		</div>
 	)
 }

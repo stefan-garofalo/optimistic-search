@@ -15,10 +15,14 @@ export default async function Results({
 	return data.isErr() ? (
 		<Error {...data.error} />
 	) : !!data.value.items.length ? (
-		<div className="h-full grid grid-cols-3 grid-rows-3 gap-2 group-has-[[data-pending]]/query:animate-pulse">
+		<div className="h-full grid grid-cols-1 lg:grid-cols-3 grid-rows-3 gap-2 group-has-[[data-pending]]/query:animate-pulse">
 			{!!data.value.items.length &&
 				data.value.items.map((item) => (
-					<CardRepository key={item.id} {...item} />
+					<CardRepository
+						className="last:mb-container lg:last:mb-0"
+						key={item.id}
+						{...item}
+					/>
 				))}
 		</div>
 	) : (

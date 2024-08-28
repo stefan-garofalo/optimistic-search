@@ -1,4 +1,11 @@
+import { merge } from '@/lib/tailwind'
+import { ClassValue } from 'clsx'
 import type { TRepositories } from '@/feat/search/types'
+
+type CardRepositoryProps = Pick<
+	TRepositories['items'][0],
+	'name' | 'description' | 'html_url' | 'full_name' | 'owner' | 'stargazers_count'
+> & { className?: ClassValue }
 
 export default function CardRepository({
 	name,
@@ -6,18 +13,16 @@ export default function CardRepository({
 	full_name,
 	stargazers_count,
 	description,
-	html_url
-}: Pick<
-	TRepositories['items'][0],
-	| 'name'
-	| 'description'
-	| 'html_url'
-	| 'full_name'
-	| 'owner'
-	| 'stargazers_count'
->) {
+	html_url,
+	className
+}: CardRepositoryProps) {
 	return (
-		<article className="relative bg-background border border-border rounded-md px-3 py-2 has-[a:hover]:border-border-active transition-colors duration-300">
+		<article
+			className={merge(
+				'relative bg-background border border-border rounded-md px-3 py-2 has-[a:hover]:border-border-active transition-colors duration-300',
+				className
+			)}
+		>
 			<div className="flex items-center justify-between">
 				<h2 className="text-lg font-bold">
 					<a

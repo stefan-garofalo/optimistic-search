@@ -39,10 +39,10 @@ export default function FilterElement({
 					: {}
 			}
 			className={merge(
-				'leading-none p-1 flex items-center gap-x-1.5 rounded-md disabled:cursor-not-allowed',
+				'leading-none -translate-x-1 p-1 flex items-center gap-x-1.5 rounded-md disabled:cursor-not-allowed',
 				active && ' text-sm border border-border ',
 				query === 'languages'
-					? `bg-[var(--color)] text-[var(--text-color)] text-sm border border-border font-mono hover:opacity-50 transition-opacity duration-300`
+					? `bg-[var(--color)] text-[var(--text-color)] text-[12px] lg:text-sm border border-border font-mono hover:opacity-50 transition-opacity duration-300`
 					: 'hover:bg-border-active transition-colors duration-300',
 				className
 			)}

@@ -8,7 +8,7 @@ export default async function Header() {
 			<div>
 				<h1 className="text-xl lg:text-2xl font-bold">Optimistic Git</h1>
 				<h2 className="text lg:text-lg">
-					All the new React and Next jazz to power GitHub&apos;s search API:
+					All the new React and Next jazz to power Github&apos;s search API:
 					<code>PPR</code>, <code>&lt;Suspense&gt;</code>, Streaming and
 					<code>useOptimistic</code>.
 				</h2>

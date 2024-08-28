@@ -14,10 +14,9 @@ export default async function Header() {
 				</h2>
 			</div>
 			<SecondaryButtonLink
-				{...(isLoggedIn ? {} : { href: '/api/login' })}
-				data-disabled={isLoggedIn ? '' : undefined}
+				{...(isLoggedIn ? { href: '/api/logout' } : { href: '/api/login' })}
 			>
-				{isLoggedIn ? 'Logged!' : 'Login'}
+				{isLoggedIn ? 'Logout' : 'Login'}
 			</SecondaryButtonLink>
 		</header>
 	)

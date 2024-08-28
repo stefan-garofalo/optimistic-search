@@ -1,3 +1,4 @@
+import { merge, ClassValue } from '@/lib/tailwind'
 import { getFilters } from '@/lib/api'
 import type { SearchParams } from '@/feat/search/types'
 
@@ -5,8 +6,6 @@ import FilterList from './List'
 import FilterReset from './Reset'
 import SkeletonFilters from '../Skeletons/Filters'
 import IconFilter from '@/ui/Icons/Filter'
-import { ClassValue } from 'clsx'
-import { merge } from '@/lib/tailwind'
 
 export default async function Filters({
 	searchParams,

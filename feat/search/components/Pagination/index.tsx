@@ -1,10 +1,9 @@
 import { getRepos } from '@/lib/api'
+import { merge, ClassValue } from '@/lib/tailwind'
 
 import { SearchParams } from '@/feat/search/types'
 import { LIMIT } from '@/feat/search/config'
 
-import { merge } from '@/lib/tailwind'
-import { ClassValue } from 'clsx'
 import Controls from './Controls'
 import SkeletonPagination from '../Skeletons/Pagination'
 

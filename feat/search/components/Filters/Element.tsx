@@ -1,6 +1,6 @@
 'use client'
 
-import { merge } from '@/lib/tailwind'
+import { merge, ClassValue } from '@/lib/tailwind'
 import type {
 	TFilterLanguage,
 	TFilterOwner,
@@ -9,7 +9,6 @@ import type {
 } from '@/feat/search/utils'
 import { SearchParams } from '@/feat/search/types'
 import IconXMark from '@/ui/Icons/XMark'
-import { ClassValue } from 'clsx'
 
 type FilterElementProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 	active: boolean

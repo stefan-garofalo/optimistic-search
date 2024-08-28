@@ -4,8 +4,7 @@ import { useState } from 'react'
 import useOptimisticParams from '../hooks/useOptimisticParams'
 import { SearchParams } from '../types'
 
-import { merge } from '@/lib/tailwind'
-import { ClassValue } from 'clsx'
+import { merge, ClassValue } from '@/lib/tailwind'
 import IconSearch from '@/ui/Icons/Search'
 
 export default function SearchBar({

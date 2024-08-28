@@ -1,5 +1,4 @@
-import { merge } from '@/lib/tailwind'
-import { ClassValue } from 'clsx'
+import { merge, ClassValue } from '@/lib/tailwind'
 import type { TRepositories } from '@/feat/search/types'
 
 type CardRepositoryProps = Pick<

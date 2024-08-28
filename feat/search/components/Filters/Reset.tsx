@@ -1,10 +1,10 @@
 'use client'
 
 import useOptimisticParams from '@/feat/search/hooks/useOptimisticParams'
+import { merge, ClassValue } from '@/lib/tailwind'
+
 import { PrimaryButtonLink } from '@/ui/ButtonLink'
 import IconReset from '@/ui/Icons/Reset'
-import { merge } from '@/lib/tailwind'
-import { ClassValue } from 'clsx'
 
 export default function FilterReset({ className }: { className?: ClassValue }) {
 	const { optimisticState, resetOptimisticState, isPending } =
